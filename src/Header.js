@@ -44,7 +44,7 @@ class Header extends React.Component {
                       className="me-2"
                       aria-label="Search"
                     />
-                    <Button onClick={this.props.search} variant="outline-success">Explore!</Button>
+                    <Button onClick={this.props.search}  variant="outline-success">Explore!</Button>
                   </Form>
                 </Navbar.Collapse>
               </Container>

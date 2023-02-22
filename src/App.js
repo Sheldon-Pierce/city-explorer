@@ -13,8 +13,8 @@ class App extends React.Component {
     this.state = {
       targetValue: '',
       results: [],
-      mapInfo: {},
-      error: null
+      error: null,
+      weatherResults: []
     };
   };
 
@@ -29,8 +29,9 @@ class App extends React.Component {
       let response = await axios(request);
 
       this.setState({
-        results: response.data
-      });
+        results: response.data,
+      })
+      ;
     } catch (e) {
       console.log(e)
       this.setState({ error: e })
@@ -43,7 +44,6 @@ class App extends React.Component {
       targetValue: value
     });
   }
-
 
   render() {
     console.log(this.state)
