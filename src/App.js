@@ -46,7 +46,7 @@ class App extends React.Component {
     console.log()
     try {
       let request = {
-        url: `http://localhost:3001/weather?lat=${this.state.results[0].lat}&lon=${this.state.results[0].lon}`,
+        url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[0].lat}&lon=${this.state.results[0].lon}`,
         method: 'GET'
       }
       axios(request)
@@ -69,7 +69,7 @@ class App extends React.Component {
     console.log()
     try {
       let request = {
-        url: `http://localhost:3001/movies?query=${this.state.targetValue}`,
+        url: `https://city-explorer-api-wvcd.onrender.com/movies?query=${this.state.targetValue}`,
         method: 'GET'
       }
       axios(request)
