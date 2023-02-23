@@ -14,7 +14,8 @@ class App extends React.Component {
       targetValue: '',
       results: [],
       error: null,
-      weatherResults: []
+      weatherResults: [],
+      movieObjects: []
     };
   };
 
@@ -26,10 +27,13 @@ class App extends React.Component {
         url: `https://us1.locationiq.com/v1/search.php?key=${API_TOKEN}&q=${this.state.targetValue}&format=json`,
         method: 'GET'
       }
-      let response = await axios(request);
-
-      this.setState({
-        results: response.data,
+       axios(request).then(response => {
+        this.setState({
+          results: response.data}, 
+          () => {
+            this.handleWeather()
+          }
+        );
       })
       ;
     } catch (e) {
@@ -37,6 +41,50 @@ class App extends React.Component {
       this.setState({ error: e })
     }
   }
+
+  handleWeather = async () => {
+    console.log()
+    try {
+      let request = {
+        url: `http://localhost:3001/weather?lat=${this.state.results[0].lat}&lon=${this.state.results[0].lon}`,
+        method: 'GET'
+      }
+      axios(request)
+        .then(response => {
+            // console.log(response.data);
+            this.setState({
+                weatherResults: response.data.data}, 
+                () => {
+                  this.handleMovies()
+                }
+              );
+            });
+    } catch (e) {
+      console.log(e)
+      this.setState({ error: e })
+    }
+  }
+
+  handleMovies = async () => {
+    console.log()
+    try {
+      let request = {
+        url: `http://localhost:3001/movies?query=${this.state.targetValue}`,
+        method: 'GET'
+      }
+      axios(request)
+        .then(response => {
+            // console.log(response.data);
+            this.setState({
+                movieObjects: response.data.results
+              });
+            });
+    } catch (e) {
+      console.log(e)
+      this.setState({ error: e })
+    }
+  }
+
 
   getTargetInfo = async (e) => {
     let value = e.target.value;
