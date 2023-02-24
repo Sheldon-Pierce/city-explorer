@@ -1,5 +1,6 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
+import OneMovie from "./oneMovie";
 
 
 class Movies extends React.Component {
@@ -22,15 +23,10 @@ class Movies extends React.Component {
                     <tbody>
                         {this.props.movies.movieObjects.map((item, i) => {
                             return (
-                            <tr key={i}>
-                                <td>{`${item.title}`}</td>
-                                <td>{`${item.overview}`}</td>
-                                <td>{`${item.vote_average}`}</td>
-                                <td>{`${item.vote_count}`}</td>
-                                <td>{<img alt={item.id} src={`${item.image_url}`}></img>}</td>
-                                <td>{`${item.popularity}`}</td>
-                                <td>{`${item.release_date}`}</td>
-                            </tr>
+                                <OneMovie 
+                                i = {i}
+                                item = {item}
+                                />
                             )
                         })}
                     </tbody>
