@@ -45,20 +45,21 @@ class App extends React.Component {
   handleWeather = async () => {
     console.log()
     try {
-      let request = {
-        url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[0].lat}&lon=${this.state.results[0].lon}`,
-        method: 'GET'
-      }
-      axios(request)
-        .then(response => {
-            // console.log(response.data);
-            this.setState({
-                weatherResults: response.data.data}, 
-                () => {
-                  this.handleMovies()
-                }
-              );
-            });
+        let request = {
+          url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[0].lat}&lon=${this.state.results[0].lon}`,
+          method: 'GET'
+        }
+        axios(request)
+          .then(response => {
+            console.log(response)
+              this.setState({
+                  weatherResults: response.data}, 
+                  () => {
+                    this.handleMovies()
+                  }
+                );
+              });
+      
     } catch (e) {
       console.log(e)
       this.setState({ error: e })
@@ -66,7 +67,6 @@ class App extends React.Component {
   }
 
   handleMovies = async () => {
-    console.log()
     try {
       let request = {
         url: `https://city-explorer-api-wvcd.onrender.com/movies?query=${this.state.targetValue}`,
@@ -76,7 +76,7 @@ class App extends React.Component {
         .then(response => {
             // console.log(response.data);
             this.setState({
-                movieObjects: response.data.results
+                movieObjects: response.data
               });
             });
     } catch (e) {

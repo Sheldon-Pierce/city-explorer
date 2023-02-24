@@ -31,7 +31,7 @@ class Main extends React.Component {
 
 
     render() {
-        console.log(this.props.state)
+        // console.log(this.props.state)
         return (
             <Container fluid='xl'>
                 <main>

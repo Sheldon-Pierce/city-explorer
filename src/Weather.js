@@ -19,8 +19,8 @@ class Weather extends React.Component {
                         {this.props.weather.weatherResults.map((item, i) => {
                             return (
                             <tr key={i}>
-                                <td><p>{`${item.valid_date}`}</p></td>
-                                <td>{`Low of ${item.min_temp}, high of ${item.high_temp} with ${item.weather.description}`}</td>
+                                <td><p>{`${item.date}`}</p></td>
+                                <td>{`Low of ${item.min_temp}, high of ${item.max_temp} with ${item.description}`}</td>
                             </tr>
                             )
                         })}

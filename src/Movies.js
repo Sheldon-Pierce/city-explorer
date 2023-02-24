@@ -23,7 +23,7 @@ class Movies extends React.Component {
                         {this.props.movies.movieObjects.map((item, i) => {
                             return (
                             <tr key={i}>
-                                <td>{`${item.original_title}`}</td>
+                                <td>{`${item.title}`}</td>
                                 <td>{`${item.overview}`}</td>
                                 <td>{`${item.vote_average}`}</td>
                                 <td>{`${item.vote_count}`}</td>
