@@ -17,14 +17,19 @@ class Weather extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {this.props.weather.weatherResults.map((item, i) => {
-                        return (
-                            <WeatherDay 
-                                i = {i}
-                                item = {item}
-                            /> 
-                    )}
-                )}
+                        {this.props.weather.map((weatherItem, i) => {
+                            console.log(weatherItem)
+                            // console.log(item)
+                            return <WeatherDay
+                                item={weatherItem}
+                                key={i}
+                            //     date={item.date}
+                            //     min_temp={item.min_temp}
+                            //     max_temp={item.max_temp}
+                            //     description={item.description}
+                            />
+                        })
+                        }
                     </tbody>
                 </Table>
             </>

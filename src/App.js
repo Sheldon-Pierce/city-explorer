@@ -27,15 +27,16 @@ class App extends React.Component {
         url: `https://us1.locationiq.com/v1/search.php?key=${API_TOKEN}&q=${this.state.targetValue}&format=json`,
         method: 'GET'
       }
-       axios(request).then(response => {
+      axios(request).then(response => {
         this.setState({
-          results: response.data}, 
+          results: response.data
+        },
           () => {
             this.handleWeather()
           }
         );
       })
-      ;
+        ;
     } catch (e) {
       console.log(e)
       this.setState({ error: e })
@@ -43,26 +44,24 @@ class App extends React.Component {
   }
 
   handleWeather = async () => {
-    console.log()
-    try {
+    let weatherArray = []
+    for (let item in this.state.results) {
+      try {
         let request = {
-          url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[0].lat}&lon=${this.state.results[0].lon}`,
+          url: `http://localhost:3001/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
           method: 'GET'
         }
         axios(request)
-          .then(response => {
-            console.log(response)
-              this.setState({
-                  weatherResults: response.data}, 
-                  () => {
-                    this.handleMovies()
-                  }
-                );
-              });
-      
-    } catch (e) {
-      console.log(e)
-      this.setState({ error: e })
+          .then(response => {          
+            weatherArray.push(response.data)
+            this.setState({
+              weatherResults: weatherArray
+            })
+          });
+      } catch (e) {
+        console.log(e)
+        this.setState({ error: e })
+      }
     }
   }
 
@@ -74,11 +73,11 @@ class App extends React.Component {
       }
       axios(request)
         .then(response => {
-            // console.log(response.data);
-            this.setState({
-                movieObjects: response.data
-              });
-            });
+          // console.log(response.data);
+          this.setState({
+            movieObjects: response.data
+          });
+        });
     } catch (e) {
       console.log(e)
       this.setState({ error: e })
@@ -97,10 +96,10 @@ class App extends React.Component {
     console.log(this.state)
     return (
       <>
-      <Header search={this.search} getTargetInfo={this.getTargetInfo} />
-      {this.state.error ? <Error error={this.state.error} /> :
-        <Main state={this.state} token={this.API_TOKEN} mapInfo={this.mapInfo}/>}   
-           </>
+        <Header search={this.search} getTargetInfo={this.getTargetInfo} />
+        {this.state.error ? <Error error={this.state.error} /> :
+          <Main state={this.state} token={this.API_TOKEN} mapInfo={this.mapInfo} />}
+      </>
     );
   };
 }

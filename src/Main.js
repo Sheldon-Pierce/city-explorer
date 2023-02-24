@@ -36,7 +36,7 @@ class Main extends React.Component {
             <Container fluid='xl'>
                 <main>
                     <Row>
-                        {this.props.state.results.map((item) => (
+                        {this.props.state.results.map((item, i) => (
                             
                             <Col md={6} lg={4}>
                                 <>
@@ -79,7 +79,7 @@ class Main extends React.Component {
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>16 Day Weather Info</Modal.Title>
                                                     </Modal.Header>
-                                                    <Modal.Body>{<Weather weather={this.props.state}/>}</Modal.Body>
+                                                    <Modal.Body>{<Weather weather={this.props.state.weatherResults[i]}/>}</Modal.Body>
                                                     <Modal.Footer>
                                                         <Button variant="secondary" onClick={() => this.setState({ setShow: false, weather: false })}>
                                                             Close
