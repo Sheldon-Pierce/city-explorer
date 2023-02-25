@@ -95,11 +95,11 @@ class Main extends React.Component {
                                                     Movies
                                                 </Button>
 
-                                                <Modal size='xl' centered show={this.state.movies} onHide={() => this.setState({ setShow: false, movies:false })}>
+                                                <Modal centered show={this.state.movies} onHide={() => this.setState({ setShow: false, movies:false })}>
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>Movies</Modal.Title>
                                                     </Modal.Header>
-                                                    <Modal.Body>{<Movies movies={this.props.state.movieObjects}/>}</Modal.Body>
+                                                    <Modal.Body>{<Movies movies={this.props.state}/>}</Modal.Body>
                                                     <Modal.Footer>
                                                         <Button variant="secondary" onClick={() => this.setState({ setShow: false, movies:false })}>
                                                             Close
