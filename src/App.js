@@ -48,7 +48,7 @@ class App extends React.Component {
     for (let item in this.state.results) {
       try {
         let request = {
-          url: `http://localhost:3001/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
+          url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
           method: 'GET'
         }
         axios(request)
