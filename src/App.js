@@ -49,7 +49,7 @@ class App extends React.Component {
       console.log(item);
       try {
         let request = {
-          url: `http://localhost:3001/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
+          url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
           method: 'GET'
         }
         axios(request)
@@ -72,7 +72,7 @@ class App extends React.Component {
   handleMovies = async () => {
     try {
       let request = {
-        url: `http://localhost:3001/movies?query=${this.state.targetValue}`,
+        url: `https://city-explorer-api-wvcd.onrender.com/movies?query=${this.state.targetValue}`,
         method: 'GET'
       }
       axios(request)
