@@ -46,16 +46,20 @@ class App extends React.Component {
   handleWeather = async () => {
     let weatherArray = []
     for (let item in this.state.results) {
+      console.log(item);
       try {
         let request = {
-          url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
+          url: `http://localhost:3001/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
           method: 'GET'
         }
         axios(request)
           .then(response => {          
             weatherArray.push(response.data)
             this.setState({
-              weatherResults: weatherArray
+              weatherResults: weatherArray,
+            },
+            () => {
+                this.handleMovies()
             })
           });
       } catch (e) {
@@ -68,12 +72,11 @@ class App extends React.Component {
   handleMovies = async () => {
     try {
       let request = {
-        url: `https://city-explorer-api-wvcd.onrender.com/movies?query=${this.state.targetValue}`,
+        url: `http://localhost:3001/movies?query=${this.state.targetValue}`,
         method: 'GET'
       }
       axios(request)
         .then(response => {
-          // console.log(response.data);
           this.setState({
             movieObjects: response.data
           });

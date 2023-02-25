@@ -6,7 +6,7 @@ import WeatherDay from "./weatherDay";
 class Weather extends React.Component {
 
     render() {
-        console.log(this.props.weather)
+        // console.log(this.props.weather)
         return (
             <>
                 <Table striped bordered hover>
@@ -18,7 +18,7 @@ class Weather extends React.Component {
                     </thead>
                     <tbody>
                         {this.props.weather.map((weatherItem, i) => {
-                            console.log(weatherItem)
+                            // console.log(weatherItem)
                             // console.log(item)
                             return <WeatherDay
                                 item={weatherItem}

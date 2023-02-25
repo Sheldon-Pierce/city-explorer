@@ -99,7 +99,7 @@ class Main extends React.Component {
                                                     <Modal.Header closeButton>
                                                         <Modal.Title>Movies</Modal.Title>
                                                     </Modal.Header>
-                                                    <Modal.Body>{<Movies movies={this.props.state}/>}</Modal.Body>
+                                                    <Modal.Body>{<Movies movies={this.props.state.movieObjects}/>}</Modal.Body>
                                                     <Modal.Footer>
                                                         <Button variant="secondary" onClick={() => this.setState({ setShow: false, movies:false })}>
                                                             Close
