@@ -4,6 +4,11 @@ import './App.css';
 import Header from './Header';
 import Error from './Error';
 import Main from './Main';
+import BackgroundVideo from './BackgroundVideo';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Footer from './Footer';
 
 const API_TOKEN = process.env.REACT_APP_Local_Key_Token;
 
@@ -14,8 +19,6 @@ class App extends React.Component {
       targetValue: '',
       results: [],
       error: null,
-      weatherResults: [],
-      movieObjects: []
     };
   };
 
@@ -30,10 +33,7 @@ class App extends React.Component {
       axios(request).then(response => {
         this.setState({
           results: response.data
-        },
-          () => {
-            this.handleWeather()
-          }
+        }
         );
       })
         ;
@@ -42,51 +42,6 @@ class App extends React.Component {
       this.setState({ error: e })
     }
   }
-
-  handleWeather = async () => {
-    let weatherArray = []
-    for (let item in this.state.results) {
-      console.log(item);
-      try {
-        let request = {
-          url: `https://city-explorer-api-wvcd.onrender.com/weather?lat=${this.state.results[item].lat}&lon=${this.state.results[item].lon}`,
-          method: 'GET'
-        }
-        axios(request)
-          .then(response => {          
-            weatherArray.push(response.data)
-            this.setState({
-              weatherResults: weatherArray,
-            },
-            () => {
-                this.handleMovies()
-            })
-          });
-      } catch (e) {
-        console.log(e)
-        this.setState({ error: e })
-      }
-    }
-  }
-
-  handleMovies = async () => {
-    try {
-      let request = {
-        url: `https://city-explorer-api-wvcd.onrender.com/movies?query=${this.state.targetValue}`,
-        method: 'GET'
-      }
-      axios(request)
-        .then(response => {
-          this.setState({
-            movieObjects: response.data
-          });
-        });
-    } catch (e) {
-      console.log(e)
-      this.setState({ error: e })
-    }
-  }
-
 
   getTargetInfo = async (e) => {
     let value = e.target.value;
@@ -100,8 +55,17 @@ class App extends React.Component {
     return (
       <>
         <Header search={this.search} getTargetInfo={this.getTargetInfo} />
-        {this.state.error ? <Error error={this.state.error} /> :
-          <Main state={this.state} token={this.API_TOKEN} mapInfo={this.mapInfo} />}
+        <Container fluid='xl'>
+          <Row>
+            {this.state.error ? <Error error={this.state.error} /> : this.state.results.map((result) =>
+              <Col md={6} lg={4}>
+                <Main state={this.state} token={this.API_TOKEN} mapInfo={this.mapInfo} display_name={result.display_name} lat={result.lat} lon={result.lon} />
+              </Col>
+            )}
+          </Row>
+        </Container>
+        <BackgroundVideo />
+        <Footer show={null}/>
       </>
     );
   };

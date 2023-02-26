@@ -1,37 +1,40 @@
 import React from "react";
-import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import WeatherDay from "./weatherDay";
 
 
 class Weather extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
     render() {
         // console.log(this.props.weather)
         return (
             <>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.weather.map((weatherItem, i) => {
-                            // console.log(weatherItem)
-                            // console.log(item)
-                            return <WeatherDay
-                                item={weatherItem}
-                                key={i}
-                            //     date={item.date}
-                            //     min_temp={item.min_temp}
-                            //     max_temp={item.max_temp}
-                            //     description={item.description}
-                            />
-                        })
-                        }
-                    </tbody>
-                </Table>
+                <Modal
+                    show={this.props.weatherStatus}
+                    size="xl"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <Modal.Header>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            7 Day Weather Forecast
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <WeatherDay weather={this.props.weather} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.props.hideModal}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
             </>
         )
     }

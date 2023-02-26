@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: rgb(34, 95, 75);
+  background-color: rgb(177, 209, 199);
 }
 
 .App-logo {
@@ -36,4 +36,39 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#root {
+  background-image: url('largeearth.jpg');
+  background-repeat: repeat;
+  background-size: 100%;
+
+}
+
+#video {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+}
+
+#cvalues {
+  color: rgb(255, 255, 255);
+}
+
+@media (max-width: 1200px) {
+  #root {
+    background-image: url('mountains.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
+  } 
+}
+
+
+@media (min-width: 1201px) {
+  #root {
+    background-image: url('largeearth.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  
 }
