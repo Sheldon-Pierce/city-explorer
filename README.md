@@ -14,7 +14,7 @@ Created an app to explore any city in the world. Using LocationIq, WeatherBit, a
 1. Clone this project locally.
 2. Run NPM install in your command line.
 3. Run NPM start to start the application.
-4.Explore!
+4. Explore!
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
